@@ -34,4 +34,3 @@ tmp/
 _tmp
 kubesphere.yaml
 testbin/
-vendor/kubesphere.io/
