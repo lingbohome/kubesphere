@@ -82,9 +82,9 @@ type Claims struct {
 
 	// The following is well-known ID Token fields
 
-	// End-User's full url in displayable form including all url parts,
+	// End-User's full name in displayable form including all name parts,
 	// possibly including titles and suffixes, ordered according to the End-User's locale and preferences.
-	Name string `json:"url,omitempty"`
+	Name string `json:"name,omitempty"`
 	// String value used to associate a Client session with an ID Token, and to mitigate replay attacks.
 	// The value is passed through unmodified from the Authentication Request to the ID Token.
 	Nonce string `json:"nonce,omitempty"`
