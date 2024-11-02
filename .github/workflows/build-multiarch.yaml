@@ -55,7 +55,7 @@ jobs:
           platforms: linux/amd64
           push: true
           tags: |
-            registry.cn-shanghai.aliyuncs.com/kube-shipper/kubesphereio-ks-apiserver:v4.1.2
+            registry.cn-shanghai.aliyuncs.com/kube-shipper/kubesphereio-ks-apiserver:v4.1.2-${{ steps.chose_registry.outputs.tag }}
 
       - name: Build and push ks-apiserver dev images
         uses: docker/build-push-action@v6
@@ -77,7 +77,7 @@ jobs:
           platforms: linux/amd64
           push: true
           tags: |
-            registry.cn-shanghai.aliyuncs.com/kube-shipper/kubesphereio-ks-controller-manager:v4.1.2
+            registry.cn-shanghai.aliyuncs.com/kube-shipper/kubesphereio-ks-controller-manager:v4.1.2-${{ steps.chose_registry.outputs.tag }}
 
       - name: Build and push ks-controller-manager dev images
         uses: docker/build-push-action@v6
