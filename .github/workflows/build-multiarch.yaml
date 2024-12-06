@@ -44,7 +44,9 @@ jobs:
           else
               echo "env=prod" >> "$GITHUB_OUTPUT"
           fi
-          echo "tag=${GITHUB_REF#refs/*/}" >> "$GITHUB_OUTPUT"          
+          echo "tag=${GITHUB_REF#refs/*/}" >> "$GITHUB_OUTPUT"
+          SHORT_COMMIT_SHA=$(git rev-parse --short $GITHUB_SHA)
+          echo "commit=$SHORT_COMMIT_SHA" >> "$GITHUB_OUTPUT"          
 
       - name: Build and push ks-apiserver images
         uses: docker/build-push-action@v6
@@ -55,7 +57,7 @@ jobs:
           platforms: linux/amd64
           push: true
           tags: |
-            registry.cn-shanghai.aliyuncs.com/kube-shipper/kubesphereio-ks-apiserver:v4.1.2-${{ steps.chose_registry.outputs.tag }}
+            registry.cn-shanghai.aliyuncs.com/kube-shipper/kubesphereio-ks-apiserver:v4.1.2-${{ steps.chose_registry.outputs.tag }}-${{ steps.chose_registry.outputs.commit }}
 
       - name: Build and push ks-apiserver dev images
         uses: docker/build-push-action@v6
@@ -77,7 +79,7 @@ jobs:
           platforms: linux/amd64
           push: true
           tags: |
-            registry.cn-shanghai.aliyuncs.com/kube-shipper/kubesphereio-ks-controller-manager:v4.1.2-${{ steps.chose_registry.outputs.tag }}
+            registry.cn-shanghai.aliyuncs.com/kube-shipper/kubesphereio-ks-controller-manager:v4.1.2-${{ steps.chose_registry.outputs.tag }}-${{ steps.chose_registry.outputs.commit }}
 
       - name: Build and push ks-controller-manager dev images
         uses: docker/build-push-action@v6
