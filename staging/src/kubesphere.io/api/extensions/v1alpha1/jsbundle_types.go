@@ -10,6 +10,18 @@ type JSBundleSpec struct {
 	Raw []byte `json:"raw,omitempty"`
 	// +optional
 	RawFrom RawFrom `json:"rawFrom,omitempty"`
+	// +optional
+	Assets Assets `json:"assets,omitempty"`
+}
+
+type Assets struct {
+	Files []FileLocation `json:"files,omitempty"`
+}
+
+type FileLocation struct {
+	Name     string `json:"name,omitempty"`
+	Link     string `json:"link,omitempty"`
+	Endpoint `json:",inline"`
 }
 
 type RawFrom struct {
