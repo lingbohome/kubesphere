@@ -81,7 +81,7 @@ func (r *JSBundleWebhook) validateJSBundle(ctx context.Context, jsBundle *extens
 	}
 	if jsBundle.Spec.Assets.Files != nil && extensionName != "" {
 		for _, file := range jsBundle.Spec.Assets.Files {
-			if !strings.HasPrefix(file.Link, fmt.Sprintf("/dist/%s/", extensionName)) {
+			if !strings.HasPrefix(file.Link, fmt.Sprintf("/dist/%s", extensionName)) {
 				return nil, fmt.Errorf("the prefix of assets file.link with %s must be in the format /dist/%s/", file.Link, extensionName)
 			}
 		}
