@@ -19,8 +19,11 @@ type Assets struct {
 }
 
 type FileLocation struct {
-	Name     string `json:"name,omitempty"`
-	Link     string `json:"link,omitempty"`
+	Name string `json:"name,omitempty"`
+	Link string `json:"link,omitempty"`
+	// Set the MIME Type of the file, if not specified, it will be provided by the content-type response header in the upstream service by default.
+	// +optional
+	MIMEType *string `json:"mimeType,omitempty"`
 	Endpoint `json:",inline"`
 }
 

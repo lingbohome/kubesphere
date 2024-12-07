@@ -78,6 +78,9 @@ func (s *jsBundle) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 		if jsBundle.Status.State == extensionsv1alpha1.StateAvailable && jsBundle.Spec.Assets.Files != nil {
 			for _, file := range jsBundle.Spec.Assets.Files {
 				if file.Link == requestInfo.Path {
+					if file.MIMEType != nil && *file.MIMEType != "" {
+						w.Header().Set("Content-Type", *file.MIMEType)
+					}
 					s.rawFromRemote(file.Endpoint, w, req)
 					return
 				}

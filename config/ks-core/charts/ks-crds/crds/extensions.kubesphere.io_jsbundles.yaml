@@ -47,6 +47,11 @@ spec:
                           type: boolean
                         link:
                           type: string
+                        mimeType:
+                          description: Set the MIME Type of the file, if not specified,
+                            it will be provided by the content-type response header
+                            in the upstream service by default.
+                          type: string
                         name:
                           type: string
                         service:
