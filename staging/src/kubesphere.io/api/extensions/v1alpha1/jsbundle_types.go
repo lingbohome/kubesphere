@@ -15,7 +15,13 @@ type JSBundleSpec struct {
 }
 
 type Assets struct {
-	Files []FileLocation `json:"files,omitempty"`
+	Style *AuxiliaryStyle `json:"style,omitempty"`
+	Files []FileLocation  `json:"files,omitempty"`
+}
+
+type AuxiliaryStyle struct {
+	Link     string `json:"link,omitempty"`
+	Endpoint `json:",inline"`
 }
 
 type FileLocation struct {

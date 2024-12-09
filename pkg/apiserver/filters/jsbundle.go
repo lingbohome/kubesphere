@@ -75,6 +75,12 @@ func (s *jsBundle) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 			}
 		}
 
+		if jsBundle.Status.State == extensionsv1alpha1.StateAvailable && jsBundle.Spec.Assets.Style != nil &&
+			jsBundle.Spec.Assets.Style.Link == requestInfo.Path {
+			s.rawFromRemote(jsBundle.Spec.Assets.Style.Endpoint, w, req)
+			return
+		}
+
 		if jsBundle.Status.State == extensionsv1alpha1.StateAvailable && jsBundle.Spec.Assets.Files != nil {
 			for _, file := range jsBundle.Spec.Assets.Files {
 				if file.Link == requestInfo.Path {
